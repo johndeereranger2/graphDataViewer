@@ -17,6 +17,6 @@ class DataRecyclerActivity : AppCompatActivity() {
 
     fun updateRecyclerView() {
         //recycler view implimentations
-        
+
     }
 }
