@@ -9,5 +9,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         
       //  onClickListener. go to recyclerActivity
+        
+        
+        // go to individualGraphActivity
     }
 }
