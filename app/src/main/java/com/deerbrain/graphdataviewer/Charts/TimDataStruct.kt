@@ -1,17 +1,9 @@
 package com.deerbrain.graphdataviewer.Charts
+import java.io.Serializable
 
-class TimDataStruct {
+class TimDataStruct(
+        val name: String,
+        val photoDate: String,
+        val locationName: String
+) : Serializable
 
-    class TimDataStruct {
-        let name: String
-        let photoDate: String
-        let locationName: String
-
-        init(name: String, photoDate: String, locationName: String){
-            self.name = name
-            self.photoDate = photoDate
-            self.locationName = locationName
-        }
-    }
-
-}
