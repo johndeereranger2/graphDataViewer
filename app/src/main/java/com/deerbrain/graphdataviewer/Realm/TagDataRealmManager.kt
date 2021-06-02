@@ -5,7 +5,8 @@ import com.deerbrain.graphdataviewer.Charts.TimDataStruct
 
 object TagDataRealmManager {
     
-    var allBuckData: 
+    var allBuckData: ArrayList<BuckData> = ArrayList<BuckData>()
+    
 
     fun addArrayData(timArray: ArrayList<TimDataStruct>) {
         var id = (RealmWrapper.realm.where(MapPolys::class.java).max("id")?.toInt() ?: 0) + 1
@@ -60,11 +61,15 @@ object TagDataRealmManager {
         return buck.buckData.filter("counter > %@", 0)
     }
     
-    func allData() -> Results<BuckData>?{
-        let otherRealm = RealmWrapper.instance.createRealm()
-        listOfBuckData = otherRealm.objects(BuckData.self)
-        return listOfBuckData
+    fun allData() : Results<BuckData>? {
+        return RealmWrapper.Realm.Objects<BuckData>()
     }
+    
+//     func allData() -> Results<BuckData>?{
+//         let otherRealm = RealmWrapper.instance.createRealm()
+//         listOfBuckData = otherRealm.objects(BuckData.self)
+//         return listOfBuckData
+//     }
     
     fun getAllData(): ArrayList<BuckData> {
         val listOfBuckData = RealmWrapper.realm.objects<BuckData>()
@@ -122,18 +127,32 @@ object TagDataRealmManager {
         return arrayOfData
     }
     
-    func getOneBuckData(_ name: String) -> [BuckData] {
-        
-        var arrayOfData: [BuckData] = []
-        if let data = buckData(named: name) {
-            for buck in data {
-                arrayOfData.append(buck)
-            }
+    fun getOneBuckData(name: String) : ArrayList<BuckData> {
+        var arrayOfData: ArrayList<BuckData>()
+        val rawData = buckData(named: name)
+        if (rawData != null) {
+         for (buck in rawData) {
+            arrayOfData.add(buck)
+         }
+            
         }
-        printOneBuckData(name)
-        print(#function, "count of data is:", arrayOfData.count)
+        
         return arrayOfData
+        
     }
+    
+//     func getOneBuckData(_ name: String) -> [BuckData] {
+        
+//         var arrayOfData: [BuckData] = []
+//         if let data = buckData(named: name) {
+//             for buck in data {
+//                 arrayOfData.append(buck)
+//             }
+//         }
+//         printOneBuckData(name)
+//         print(#function, "count of data is:", arrayOfData.count)
+//         return arrayOfData
+//     }
     
     func deleteOneBuckData(){
         let bucks = realm.objects(BuckData.self).filter("buckTag == %@", "Sample Data")
