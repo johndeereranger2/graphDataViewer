@@ -1,5 +1,7 @@
 package com.deerbrain.graphdataviewer.Charts
 
+import android.util.Log
+
 class SampleDataMaker {
     companion object{
         var dataArray: ArrayList<TimDataStruct> = ArrayList<TimDataStruct>()
@@ -15,6 +17,7 @@ class SampleDataMaker {
         }
 
         fun loadData(){
+            Log.i("Realm", "StartSampleData")
             dataArray.add(TimDataStruct(name = " Sample Data ", photoDate = " 2019-09-28 08:34:26 +0000 " , locationName = " Camera Name 1 "))
             dataArray.add(TimDataStruct(name = " Sample Data ", photoDate = " 2019-09-29 01:30:28 +0000 " , locationName = " Camera Name 1 "))
             dataArray.add(TimDataStruct(name = " Sample Data ", photoDate = " 2019-09-29 01:45:18 +0000 " , locationName = " Camera Name 1 "))
@@ -2113,6 +2116,8 @@ class SampleDataMaker {
             dataArray.add(TimDataStruct(name = " Sample Data ", photoDate = " 2019-12-18 23:48:54 +0000 " , locationName = " Camera Name 2 "))
             dataArray.add(TimDataStruct(name = " Sample Data ", photoDate = " 2019-12-19 21:45:58 +0000 " , locationName = " Camera Name 2 "))
             dataArray.add(TimDataStruct(name = " Sample Data ", photoDate = " 2020-10-27 22:53:40 +0000 " , locationName = " Camera Name 2 "))
+
+            Log.i("Realm", "FinishedSampleData")
         }
 
 
