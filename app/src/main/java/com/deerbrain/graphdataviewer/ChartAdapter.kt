@@ -1,49 +1,23 @@
 package com.deerbrain.graphdataviewer
 
-import android.content.DialogInterface
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-open class ChartAdapter() : RecyclerView.Adapter<ChartRecyclerItem> {
-    var items = mutableListOf<ChartRecyclerItem>()
-    var data = arrayList<BuckData>()
-    
+class ChartAdapter() : RecyclerView.Adapter<GraphCell>() {
 
-    var displayData: Array<String> = arrayOf("Hour of Day","Time Till Dusk", "Trail Camera")
+    var cellsToShow = ArrayList<GraphRecyclerItem>()
 
     private var onClickListener: OnClickListener? = null
 
     ///numberOf rows
     override fun getItemCount(): Int {
-        return items.size
+        return cellsToShow.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChartRecyclerItem {
-        val termView = LayoutInflater.from(parent.context).inflate(R.layout.termcells, parent, false)
-        return ChartRecyclerItem(termView)
-    }
-
-    override fun onBindViewHolder(holder: ChartRecyclerItem, position: Int) {
-        when (displayData[position]) {
-            "Hour of Day" -> {
-                ChartRecyclerItem.data = TableCellData(title: "Sightings by Hour of Day", type: .hourOfDay, data: DeerChartCalcs().hourOfDayData,
-                DeerChartCalcs.hourOfDayData.maxY)
-            }
-            "Time Till Dusk" -> {
-                ChartRecyclerItem.data = TableCellData(title: "Time Till Dusk", type: .hourOfDay, data: DeerChartCalcs().timeTillDusk,
-                DeerChartCalcs.timeTillDusk.maxY)
-            }
-            "Trail Camera" -> {
-                ChartRecyclerItem.data = TableCellData(title: "Trail Camera", type: .hourOfDay, data: DeerChartCalcs().Trail Camera,
-                DeerChartCalcs.Trail Camera.maxY)
-                //this will be a pie graph and the others will be a chart
-            }
-
-
-        }
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GraphCell {
+        val cellItem = LayoutInflater.from(parent.context).inflate(R.layout.graphviewcell, parent, false)
+        return GraphCell(cellItem)
     }
 
     fun setOnClickListener(itemPressed: OnClickListener) {
@@ -51,9 +25,26 @@ open class ChartAdapter() : RecyclerView.Adapter<ChartRecyclerItem> {
     }
 
     interface OnClickListener {
-        fun onClick(position: Int, model: ChartRecyclerItem)
+        fun onClick(position: Int, model: GraphRecyclerItem)
     }
 
+    override fun onBindViewHolder(holder: GraphCell, position: Int) {
+        val individualGraphCell = cellsToShow[position]
+        holder.headerLabel.text = individualGraphCell.theHeaderLabel
 
+
+        //set up graphData
+        //handle Morebutton onclicklistener
+
+    }
+
+    fun update(items: ArrayList<GraphRecyclerItem>) {
+        this.cellsToShow.clear()
+        this.cellsToShow = items
+        notifyDataSetChanged()
+    }
 
 }
+
+
+

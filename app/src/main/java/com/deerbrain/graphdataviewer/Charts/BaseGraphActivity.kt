@@ -2,6 +2,7 @@ package com.deerbrain.graphdataviewer.Charts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.deerbrain.graphdataviewer.R
 
 
 //this is similar to baseGraphViewController

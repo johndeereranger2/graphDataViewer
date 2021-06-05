@@ -2,8 +2,57 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/septButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DataRecyclerActivity">
 
+    <Button
+        android:id="@+id/allButton"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:text="All"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="9dp"
+        android:text="Sept"
+        app:layout_constraintEnd_toStartOf="@+id/octButton"
+        app:layout_constraintStart_toEndOf="@+id/allButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/octButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="Oct"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="213dp" />
+
+    <Button
+        android:id="@+id/novButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="13dp"
+        android:text="Nov"
+        app:layout_constraintStart_toEndOf="@+id/octButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tableView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="148dp"
+        tools:listitem="@layout/graphviewcell" />
 </androidx.constraintlayout.widget.ConstraintLayout>

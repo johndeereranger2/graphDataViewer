@@ -8,12 +8,10 @@ class SampleDataMaker {
         var dataLoaded: Boolean = false
 
         fun createData(){
-            if !(dataLoaded {
+            if (!dataLoaded) {
                 loadData()
                 dataLoaded = true
             }
-
-
         }
 
         fun loadData(){
