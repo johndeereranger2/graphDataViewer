@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 open class ChartAdapter() : RecyclerView.Adapter<ChartRecyclerItem> {
     var items = mutableListOf<ChartRecyclerItem>()
+    var data = arrayList<BuckData>()
+    
 
     var displayData: Array<String> = arrayOf("Hour of Day","Time Till Dusk", "Trail Camera")
 

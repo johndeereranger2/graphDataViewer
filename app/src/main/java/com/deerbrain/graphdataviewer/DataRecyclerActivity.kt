@@ -16,6 +16,7 @@ class DataRecyclerActivity : AppCompatActivity() {
     }
 
     fun updateRecyclerView() {
+        chartAdapter.data = TagDataRealmManager.instance.getAllData()
         //recycler view implimentations
 
     }
