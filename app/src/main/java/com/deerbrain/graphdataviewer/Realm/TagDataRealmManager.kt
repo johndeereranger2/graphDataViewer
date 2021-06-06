@@ -1,34 +1,46 @@
 package com.deerbrain.graphdataviewer.Realm
 
 import android.util.Log
+import com.deerbrain.graphdataviewer.Charts.SampleDataMaker
 import com.deerbrain.graphdataviewer.Charts.TimDataStruct
 
 
 object TagDataRealmManager {
     
-//    var allBuckData: ArrayList<BuckData> = ArrayList<BuckData>()
-//
-//
-//    fun addArrayData(timArray: ArrayList<TimDataStruct>) {
-//
-//
-//        for (item in timArray) {
-//            var id = (RealmWrapper.realm.where(BuckData::class.java).max("id")?.toInt() ?: 0) + 1
-//            val newItem = BuckData()
-//            newItem.id = id
-//            newItem.cameraLocationName = item.locationName
-//            newItem.buckTag = item.name
-//            newItem.photoDateString = item.photoDate
-//
-//
-//            RealmWrapper.realm.executeTransaction{
-//                it.insert(newItem)
-//            }
-//            Log.i("Realm", "Stored Marker at ${id} ${item.photoDate}")
-//        }
-//
-//
-//    }
+    var allBuckData: List<BuckData> = emptyList()
+
+    fun setup(){
+        val newBuckData = allData()
+        if (newBuckData != null) {
+            allBuckData = newBuckData
+        } else {
+            SampleDataMaker.createData()
+            addArrayData(SampleDataMaker.dataArray)
+        }
+    }
+
+
+
+    fun addArrayData(timArray: ArrayList<TimDataStruct>) {
+
+
+        for (item in timArray) {
+            var id = (RealmWrapper.realm.where(BuckData::class.java).max("id")?.toInt() ?: 0) + 1
+            val newItem = BuckData()
+            newItem.id = id
+            newItem.cameraLocationName = item.locationName
+            newItem.buckTag = item.name
+            newItem.photoDateString = item.photoDate
+
+
+            RealmWrapper.realm.executeTransaction{
+                it.insert(newItem)
+            }
+            Log.i("Realm", "Stored Marker at ${id} ${item.photoDate}")
+        }
+
+
+    }
 //
 //    fun buckData(named: String) : Results<BuckData>? {
 //        return RealmWrapper.realm.objects<BuckData>().query("buckTag = $0", named)
@@ -79,9 +91,9 @@ object TagDataRealmManager {
 //        return buck.buckData.filter("counter > %@", 0)
 //    }
 //
-//    fun allData() : Results<BuckData>? {
-//        return RealmWrapper.Realm.Objects<BuckData>()
-//    }
+    fun allData() : List<BuckData>? {
+        return RealmWrapper.realm.where(BuckData::class.java).findAll()
+    }
 //
 ////     func allData() -> Results<BuckData>?{
 ////         let otherRealm = RealmWrapper.instance.createRealm()

@@ -19,11 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-        SampleDataMaker.createData()
-
-        //TagDataRealmManager.addArrayData(SampleDataMaker.dataArray)
+        //TagDataRealmManager.setup()  // with this working the data will populate
 
         openGraphsButton.setOnClickListener {
             openGraphsButtonPressed()
@@ -33,5 +29,6 @@ class MainActivity : AppCompatActivity() {
     fun openGraphsButtonPressed(){
         val intent = Intent(this, DataRecyclerActivity::class.java)
         startActivity(intent)
+        TagDataRealmManager.setup()
     }
 }
